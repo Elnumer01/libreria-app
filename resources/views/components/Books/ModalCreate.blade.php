@@ -23,10 +23,11 @@
                 @enderror
                 <input type="text" class="form-control" name="gender" placeholder="Genero" aria-label="Username"><br>
                 @error('gender')
-                    <small class="text-danger">{{$message}}</small>
+                    <small class="text-danger">{{$message}}</small><br>
                 @enderror
                 <label for="">Autores</label>
                 <select class="form-select" name="author_id" id="">
+                    <option value="">Selecciona un autor...</option>
                     @foreach ($authors as $author)
                         <option value="{{$author->id}}">{{$author->name}} {{$author->lastname}}</option>
                     @endforeach
