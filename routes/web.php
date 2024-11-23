@@ -17,5 +17,7 @@ Route::get('login',[AuthController::class,'loginView'])->name('login');
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('books', BookController::class);
+    Route::resource('authors',AuthorController::class);
+    Route::resource('loans',LoanController::class);
     Route::get('logout',[AuthController::class,'logout']);
 });

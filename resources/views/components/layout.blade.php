@@ -14,9 +14,10 @@
         <div class="container__img">
             <img src="../../img/logoBook.png" alt="">
         </div>
-        <a href="#home">Libros</a>
-        <a href="#news">Clientes</a>
-        <a href="#contact">prestamos</a>
+        <a href="/authors">Autores</a>
+        <a href="/books">Libros</a>
+        <a href="/customers">Clientes</a>
+        <a href="/loans">prestamos</a>
         <a href="{{url('logout')}}">cerrar sesion</a>
       </div>
     <div class="content">

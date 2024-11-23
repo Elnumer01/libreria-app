@@ -20,10 +20,7 @@ class AuthorController extends Controller
     {
         try {
             $authors = $this->authorRepository->getAll();
-            return response()->json([
-                'message'=> 'list authors',
-                'authors' => $authors
-            ],201);
+            return view('Pages.Authors',compact('authors'));
         }
         catch (Exception $e) {
             return response()->json(['message' => 'Author not found'], 404);
@@ -34,15 +31,14 @@ class AuthorController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string',
-            'lastname' => 'required|string'
+            'lastname' => 'required|string',
+            'address' => 'required|string',
+            'city' => 'required|string',
         ]);
 
-        $author = $this->authorRepository->create($data);
+        $this->authorRepository->create($data);
 
-        return response()->json([
-            'message' => 'Author created successfully',
-            'author' => $author
-        ],201);
+        return redirect('/authors')->with('msg','create');
     }
 
     public function show($id)
@@ -59,16 +55,15 @@ class AuthorController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string',
-            'lastname' => 'required|string'
+            'lastname' => 'required|string',
+            'address' => 'required|string',
+            'city' => 'required|string',
         ]);
         try {
-            $authorUpdate = $this->authorRepository->update($id, $data);
-            return response()->json([
-                'message' => 'author updated successfully',
-                'author' => $authorUpdate,
-            ],201);
+            $this->authorRepository->update($id, $data);
+            return redirect('/authors')->with('msg','update');
         } catch (Exception $e) {
-            return response()->json(['message' => 'Author not found'], 404);
+            return redirect('/authors')->with('msg','error');
         }
     }
 
@@ -76,9 +71,9 @@ class AuthorController extends Controller
     {
         try {
             $this->authorRepository->delete($id);
-            return response()->json(['message' => 'Author deleted successfully']);
+            return redirect('/authors')->with('msg','delete');
         } catch (Exception $e) {
-            return response()->json(['message' => 'Author not found'], 404);
+            return redirect('/authors')->with('msg','error');
         }
     }
 }

@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Interfaces\LoanRepositoryInterface;
+use App\Repositories\Interfaces\BooksRepositoryInterface;
+use App\Models\Book;
 class LoanController extends Controller
 {
+    private $userRepository;
+    private $bookRepository;
     private $loanRepository;
 
-    public function __construct(LoanRepositoryInterface $loanRepository)
+    public function __construct(LoanRepositoryInterface $loanRepository, BooksRepositoryInterface $bookRepository)
     {
+        $this->bookRepository = $bookRepository;
         $this->loanRepository = $loanRepository;
     }
 
@@ -19,11 +24,9 @@ class LoanController extends Controller
     public function index()
     {
         try {
-            $books = $this->loanRepository->getAll();
-            return response()->json([
-                'message' => 'list loans',
-                'loans' => $books
-            ],201);
+            $books = $this->bookRepository->getAll();
+            $loans = $this->loanRepository->getAll();
+            return view('Pages.Loans',compact('books','loans'));
         }
         catch (\Exception $e) {
             return response()->json(['message' => 'Loans not found'], 404);
