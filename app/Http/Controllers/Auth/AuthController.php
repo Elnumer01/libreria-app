@@ -44,6 +44,6 @@ class AuthController extends Controller
     public function logout()
     {
         $this->authRepository->logout();
-        return redirect('/login');
+        return redirect('/login')->with('msg','logout');
     }
 }
