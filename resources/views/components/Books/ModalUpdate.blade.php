@@ -28,7 +28,7 @@
                 @enderror
                 <label for="">Autores</label>
                 <select class="form-select" name="author_id" id="">
-                    <option value="">Selecciona un autor...</option>
+                    <option selected="true" disabled="disabled" value="">Selecciona un autor...</option>
                     @foreach ($authors as $author)
                         <option value="{{$author->id}}">{{$author->name}} {{$author->lastname}}</option>
                     @endforeach

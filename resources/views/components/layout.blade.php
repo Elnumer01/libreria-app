@@ -16,7 +16,7 @@
         </div>
         <a href="/authors">Autores</a>
         <a href="/books">Libros</a>
-        <a href="/customers">Clientes</a>
+        <a href="/users">Usuarios</a>
         <a href="/loans">prestamos</a>
         <a href="{{url('logout')}}">cerrar sesion</a>
       </div>

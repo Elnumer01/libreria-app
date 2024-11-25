@@ -1,7 +1,7 @@
 @extends('components.layout')
 
 @section('title')
-    <h2>Prestamos</h2>
+    <h2>Usuarios</h2>
 @endsection
 
 @section('container')
@@ -33,14 +33,13 @@
                 </div>
             </div>
         </div>
-        @include('components.Loans.ModalCreate')
+        @include('components.Users.ModalCreate')
         <div class="container__table">
             <div class="scrollable">
-                @include('components.Loans.Table')
+                @include('components.Users.Table')
             </div>
         </div>
     </div>
-
 
     @include('components.filtros')
     @include('components.alerts')

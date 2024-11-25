@@ -5,7 +5,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\LoanController;
-
+use App\Http\Controllers\UsersController;
 
 Route::get('/', function () {
     return view('Pages.Login');
@@ -16,6 +16,7 @@ Route::get('login',[AuthController::class,'loginView'])->name('login');
 
 
 Route::middleware(['auth'])->group(function () {
+    Route::resource('users',UsersController::class);
     Route::resource('books', BookController::class);
     Route::resource('authors',AuthorController::class);
     Route::resource('loans',LoanController::class);

@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\Interfaces\LoanRepositoryInterface;
 use App\Repositories\Interfaces\BooksRepositoryInterface;
-use App\Models\Book;
+use App\Repositories\Interfaces\UsersRepositoryInterface;
+
 class LoanController extends Controller
 {
-    private $userRepository;
+    private $usersRepository;
     private $bookRepository;
     private $loanRepository;
 
-    public function __construct(LoanRepositoryInterface $loanRepository, BooksRepositoryInterface $bookRepository)
+    public function __construct(LoanRepositoryInterface $loanRepository, BooksRepositoryInterface $bookRepository, UsersRepositoryInterface $usersRepository)
     {
+        $this->usersRepository = $usersRepository;
         $this->bookRepository = $bookRepository;
         $this->loanRepository = $loanRepository;
     }
@@ -24,9 +26,10 @@ class LoanController extends Controller
     public function index()
     {
         try {
+            $clients = $this->usersRepository->getClients();
             $books = $this->bookRepository->getAll();
             $loans = $this->loanRepository->getAll();
-            return view('Pages.Loans',compact('books','loans'));
+            return view('Pages.Loans',compact('clients','books','loans'));
         }
         catch (\Exception $e) {
             return response()->json(['message' => 'Loans not found'], 404);
@@ -38,18 +41,20 @@ class LoanController extends Controller
      */
     public function store(Request $request)
     {
+        if($this->loanRepository->BookExist($request->book_id)){
+            return redirect('/loans')->with('msg','exists');
+        }
+
         $validatedData = $request->validate([
             'user_id' => 'required',
             'book_id' => 'required',
-            'status' => 'required'
         ]);
 
-        $loan = $this->loanRepository->create($validatedData);
+        $validatedData['status'] = 'Prestado';
 
-        return response()->json([
-            'message' => 'loan created successfully',
-            'loan' => $loan,
-        ], 201);
+        $this->loanRepository->create($validatedData);
+
+        return redirect('/loans')->with('msg','create');
     }
 
     /**
@@ -58,8 +63,7 @@ class LoanController extends Controller
     public function show($id)
     {
         try {
-            $loan = $this->loanRepository->getById($id);
-            return response()->json($loan,201);
+            $this->loanRepository->getById($id);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Loan not found'], 404);
         }
@@ -75,13 +79,10 @@ class LoanController extends Controller
                 'book_id' => 'required',
                 'status' => 'required'
             ]);
-            $updatedLoan = $this->loanRepository->update($id, $validatedData);
-            return response()->json([
-                'message' => 'Loan updated successfully',
-                'book' => $updatedLoan,
-            ],201);
+            $this->loanRepository->update($id, $validatedData);
+            return redirect('/loans')->with('msg','update');
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Loan not found'], 404);
+            return redirect('/loans')->with('msg','error');
         }
     }
 
@@ -92,9 +93,9 @@ class LoanController extends Controller
     {
         try {
             $this->loanRepository->delete($id);
-            return response()->json(['message' => 'Loan deleted successfully'],201);
+            return redirect('/loans')->with('msg','delete');
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Loan not found'], 404);
+            return redirect('/loans')->with('msg','error');
         }
     }
 }
