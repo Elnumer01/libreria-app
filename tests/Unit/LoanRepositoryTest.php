@@ -99,7 +99,7 @@ class LoanRepositoryTest extends TestCase
         $repository = new LoanRepository();
         $loans = $repository->getAll();
 
-        $this->assertCount(5, $loans);
+        $this->assertCount(6, $loans);
     }
 
     public function test_can_get_loan_by_id()
@@ -138,6 +138,39 @@ class LoanRepositoryTest extends TestCase
         $this->assertEquals($loan->id, $foundLoan->id);
         $this->assertEquals($user->id, $foundLoan->user_id);
         $this->assertEquals($book->id, $foundLoan->book_id);
+    }
+
+    public function test_can_book_exist() {
+        $user = User::create([
+            'name' => 'Jane',
+            'email' => 'jane.doe@example.com',
+            'password' => bcrypt('password'),
+        ]);
+
+        $author = Author::create([
+            'name' => 'John',
+            'lastname' => 'Doe',
+            'address' => '123 Main St',
+            'city' => 'New York',
+        ]);
+
+        $book = Book::create([
+            'title' => 'Sample Book',
+            'description' => 'A test description',
+            'isbn' => '123-456-789',
+            'gender' => 'Fiction',
+            'author_id' => $author->id,
+            'status' => true,
+        ]);
+        $loan = Loan::create([
+            'user_id' => $user->id,
+            'book_id' => $book->id,
+            'status' => 'Prestado',
+        ]);
+
+        $repository = new LoanRepository();
+        $exists = $repository->BookExist($book->id);
+        $this->assertTrue($exists);
     }
 
     public function test_can_update_loan()

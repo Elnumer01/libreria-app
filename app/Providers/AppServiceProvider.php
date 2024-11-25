@@ -11,6 +11,10 @@ use App\Repositories\Interfaces\BooksRepositoryInterface;
 use App\Repositories\BooksRepository;
 use App\Repositories\Interfaces\LoanRepositoryInterface;
 use App\Repositories\LoanRepository;
+use App\Repositories\Interfaces\UsersRepositoryInterface;
+use App\Repositories\UserRepository;
+use Tests\Unit\UsersRepositoryTest;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -19,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
+        $this->app->bind(UsersRepositoryInterface::class, UserRepository::class);
         $this->app->bind(AuthorRepositoryInterface::class, AuthorRepository::class);
         $this->app->bind(BooksRepositoryInterface::class, BooksRepository::class);
         $this->app->bind(LoanRepositoryInterface::class, LoanRepository::class);

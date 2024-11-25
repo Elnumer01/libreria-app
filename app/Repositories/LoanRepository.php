@@ -12,7 +12,7 @@ class LoanRepository implements LoanRepositoryInterface
           return DB::table('loans')
         ->join('users','loans.user_id','=', 'users.id')
         ->join('books','loans.book_id','=','books.id')
-        ->select('users.name','books.title',DB::raw("DATE_FORMAT(loans.created_at, '%d/%m/%Y') AS fecha"))
+        ->select('loans.id as id','loans.user_id as user_id','users.name as name','loans.book_id as book_id','books.title as title',DB::raw("DATE_FORMAT(loans.created_at, '%d/%m/%Y') AS fecha"), 'loans.status')
         ->get();
 
     }
@@ -20,6 +20,12 @@ class LoanRepository implements LoanRepositoryInterface
     public function getById($id)
     {
         return Loan::findOrFail($id);
+    }
+
+    public function BookExist($id) {
+        return Loan::where('book_id','=',$id)
+        ->where('status','=','Prestado')
+        ->exists();
     }
 
     public function create(array $data)
