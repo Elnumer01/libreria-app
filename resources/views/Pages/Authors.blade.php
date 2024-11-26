@@ -10,7 +10,7 @@
         <div class="row">
             <div class="row row-cols-auto">
                 <div class="col-sm-2 col-auto">
-                    <button class="button__create " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button id="modalcreateauthor" class="button__create " data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <span>
                         <svg
                         height="24"
