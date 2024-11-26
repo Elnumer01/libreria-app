@@ -9,24 +9,24 @@
         <div class="modal-body">
             <form method="POST" action="{{url('books')}}">
                 @csrf
-                <input type="text" class="form-control" name="title" placeholder="titulo" aria-label="Username"><br>
+                <input id="createtitlebook" type="text" class="form-control" name="title" placeholder="titulo" aria-label="Username"><br>
                 @error('title')
                     <small class="text-danger">{{$message}}</small>
                 @enderror
-                <textarea placeholder="descripción" name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea><br>
+                <textarea id="createdescriptionbook" placeholder="descripción" name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea><br>
                 @error('description')
                     <small class="text-danger">{{$message}}</small>
                 @enderror
-                <input type="text" class="form-control" name="isbn" placeholder="ISBN" aria-label="Username"><br>
+                <input id="createisbnbook" type="text" class="form-control" name="isbn" placeholder="ISBN" aria-label="Username"><br>
                 @error('isbn')
                     <small class="text-danger">{{$message}}</small>
                 @enderror
-                <input type="text" class="form-control" name="gender" placeholder="Genero" aria-label="Username"><br>
+                <input id="creategenderbook" type="text" class="form-control" name="gender" placeholder="Genero" aria-label="Username"><br>
                 @error('gender')
                     <small class="text-danger">{{$message}}</small><br>
                 @enderror
                 <label for="">Autores</label>
-                <select class="form-select" name="author_id" id="">
+                <select class="form-select" name="author_id" id="createauthor_id_book">
                     <option selected="true" disabled="disabled" value="">Selecciona un autor...</option>
                     @foreach ($authors as $author)
                         <option value="{{$author->id}}">{{$author->name}} {{$author->lastname}}</option>
@@ -36,7 +36,7 @@
                         <small class="text-danger">{{$message}}</small>
                 @enderror
                 <div class="d-grid col-6 mx-auto">
-                    <button class="btn btn-secondary"><i class="fa-solid fa-floppy-disk" type="submit"></i> Guardar</button>
+                    <button id="createbook" class="btn btn-secondary"><i class="fa-solid fa-floppy-disk" type="submit"></i> Guardar</button>
                 </div>
             </form>
         </div>

@@ -53,7 +53,7 @@ class BookRepositoryTest extends TestCase
         $repository = new BooksRepository();
         $books = $repository->getAll();
 
-        $this->assertCount(5, $books);
+        $this->assertCount(2, $books);
     }
 
     public function test_can_get_book_by_id()

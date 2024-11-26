@@ -29,7 +29,6 @@ class AuthorRepositoryTest extends TestCase
 
     public function test_can_get_all_authors()
     {
-        // Crear autores manualmente
         Author::create(['name' => 'Author 1', 'lastname' => 'Lastname 1', 'address' => 'Address 1', 'city' => 'City 1']);
         Author::create(['name' => 'Author 2', 'lastname' => 'Lastname 2', 'address' => 'Address 2', 'city' => 'City 2']);
         Author::create(['name' => 'Author 3', 'lastname' => 'Lastname 3', 'address' => 'Address 3', 'city' => 'City 3']);
@@ -37,12 +36,11 @@ class AuthorRepositoryTest extends TestCase
         $repository = new AuthorRepository();
         $authors = $repository->getAll();
 
-        $this->assertCount(6, $authors);
+        $this->assertCount(3, $authors);
     }
 
     public function test_can_get_author_by_id()
     {
-        // Crear un autor manualmente
         $author = Author::create(['name' => 'John', 'lastname' => 'Doe', 'address' => '123 Main St', 'city' => 'New York']);
         $repository = new AuthorRepository();
         $foundAuthor = $repository->getById($author->id);
@@ -52,7 +50,6 @@ class AuthorRepositoryTest extends TestCase
 
     public function test_can_update_author()
     {
-        // Crear un autor manualmente
         $author = Author::create(['name' => 'John', 'lastname' => 'Doe', 'address' => '123 Main St', 'city' => 'New York']);
         $repository = new AuthorRepository();
 
@@ -64,7 +61,6 @@ class AuthorRepositoryTest extends TestCase
 
     public function test_can_delete_author()
     {
-        // Crear un autor manualmente
         $author = Author::create(['name' => 'John', 'lastname' => 'Doe', 'address' => '123 Main St', 'city' => 'New York']);
         $repository = new AuthorRepository();
 
