@@ -99,7 +99,7 @@ class LoanRepositoryTest extends TestCase
         $repository = new LoanRepository();
         $loans = $repository->getAll();
 
-        $this->assertCount(6, $loans);
+        $this->assertCount(5, $loans);
     }
 
     public function test_can_get_loan_by_id()

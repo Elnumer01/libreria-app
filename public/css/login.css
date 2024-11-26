@@ -110,7 +110,7 @@ transform: translateY(-200%);
 .button::before {
 position: absolute;
 bottom: -20px;
-content: "INICIAR SESIÓN";
+content: "Login";
 color: white;
 font-size: 0px;
 }
