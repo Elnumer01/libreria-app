@@ -15,20 +15,16 @@ class LoginTest extends DuskTestCase
      */
     public function testExample(): void
     {
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
-
         $user = User::create([
             'name' => "Romario",
             'email' => "romario1234343@gmail.com",
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password'=>bcrypt('12345678')
         ]);
 
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
-                    ->type('email', 'elnumero1@gmail.com')
+                    ->type('email', 'romario1234343@gmail.com')
                     ->type('password', '12345678')
                     ->click('button[type="submit"]')
                     ->assertPathIs('/books')

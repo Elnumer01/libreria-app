@@ -16,14 +16,10 @@ class BookCreateTest extends DuskTestCase
      */
     public function testExample(): void
     {
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
-
         $user = User::create([
             'name' => "Romario",
             'email' => "romario1234343@gmail.com",
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password'=>bcrypt('12345678')
         ]);
 

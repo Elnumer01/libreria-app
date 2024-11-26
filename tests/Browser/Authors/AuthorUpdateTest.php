@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use App\Models\User;
+use App\Models\Author;
+use App\Repositories\AuthorRepository;
 use App\Repositories\UserRepository;
 class AuthorUpdateTest extends DuskTestCase
 {
@@ -16,16 +18,20 @@ class AuthorUpdateTest extends DuskTestCase
     public function testExample(): void
     {
 
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
-
         $user = User::create([
             'name' => "Romario",
             'email' => "romario1234343@gmail.com",
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password'=>bcrypt('12345678')
         ]);
+
+        $author = Author::create([
+            'name' => 'Author 3',
+            'lastname' => 'Lastname 3',
+            'address' => 'Address 3',
+            'city' => 'City 3'
+        ]);
+
 
         $this->browse(function (Browser $browser) use ($user){
             $browser->loginAs($user)
@@ -39,6 +45,10 @@ class AuthorUpdateTest extends DuskTestCase
                     ->pause(2000)
                 ;
         });
+
+        $repositoryauthor = new AuthorRepository();
+
+        $repositoryauthor->delete($author->id);
 
         $repository = new UserRepository();
 

@@ -17,14 +17,10 @@ class LoanRepositoryTest extends TestCase
 
     public function test_can_create_loan()
     {
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
-
         $user = User::create([
             'name' => 'Jane',
             'email' => 'jane.doe@example.com',
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password' => bcrypt('password'),
         ]);
 
@@ -61,14 +57,11 @@ class LoanRepositoryTest extends TestCase
 
     public function test_can_get_all_loans()
     {
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
 
         $user = User::create([
             'name' => 'Jane',
             'email' => 'jane.doe@example.com',
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password' => bcrypt('password'),
         ]);
         $author = Author::create([
@@ -115,14 +108,11 @@ class LoanRepositoryTest extends TestCase
 
     public function test_can_get_loan_by_id()
     {
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
 
         $user = User::create([
             'name' => 'Jane',
             'email' => 'jane.doe@example.com',
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password' => bcrypt('password'),
         ]);
 
@@ -158,14 +148,11 @@ class LoanRepositoryTest extends TestCase
 
     public function test_can_book_exist() {
 
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
 
         $user = User::create([
             'name' => 'Jane',
             'email' => 'jane.doe@example.com',
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password' => bcrypt('password'),
         ]);
 
@@ -197,14 +184,11 @@ class LoanRepositoryTest extends TestCase
 
     public function test_can_update_loan()
     {
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
 
         $user = User::create([
             'name' => 'Jane',
             'email' => 'jane.doe@example.com',
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password' => bcrypt('password'),
         ]);
 
@@ -240,14 +224,11 @@ class LoanRepositoryTest extends TestCase
 
     public function test_can_delete_loan()
     {
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
 
         $user = User::create([
             'name' => 'Jane',
             'email' => 'jane.doe@example.com',
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password' => bcrypt('password'),
         ]);
 

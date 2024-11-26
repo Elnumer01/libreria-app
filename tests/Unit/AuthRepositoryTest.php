@@ -25,16 +25,11 @@
         /** @test */
         public function it_logs_in_an_existing_user()
         {
-
-            $rol = Rol::create([
-                'rol' => 1
-            ]);
-
             $user = User::factory()->create([
                 'name' => 'test',
                 'email' => 'loginuser@example.com',
                 'password' => Hash::make('12345678'),
-                'rol_id' => $rol->id,
+                'rol_id' => 1,
             ]);
 
             $credentials = [
@@ -51,15 +46,12 @@
         /** @test */
         public function it_logs_out_the_authenticated_user()
         {
-            $rol = Rol::create([
-                'rol' => 1
-            ]);
 
             $user = User::factory()->create([
                 'name' => 'test',
                 'email' => 'loginuser@example.com',
                 'password' => Hash::make('12345678'),
-                'rol_id' => $rol->id,
+                'rol_id' => 1,
             ]);
             Auth::login($user);
 
@@ -73,15 +65,12 @@
         /** @test */
         public function it_returns_the_authenticated_user()
         {
-            $rol = Rol::create([
-                'rol' => 1
-            ]);
 
             $user = User::factory()->create([
                 'name' => 'test',
                 'email' => 'loginuser@example.com',
                 'password' => Hash::make('12345678'),
-                'rol_id' => $rol->id
+                'rol_id' => 1
             ]);
             Auth::login($user);
 
