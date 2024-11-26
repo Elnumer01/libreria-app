@@ -7,6 +7,7 @@ use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use App\Models\User;
 use App\Models\Rol;
+use App\Repositories\AuthorRepository;
 use App\Repositories\UserRepository;
 class AuthorCreateTest extends DuskTestCase
 {
@@ -15,14 +16,10 @@ class AuthorCreateTest extends DuskTestCase
      */
     public function testExample(): void
     {
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
-
         $user = User::create([
             'name' => "Romario",
             'email' => "romario1234343@gmail.com",
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password'=>bcrypt('12345678')
         ]);
 

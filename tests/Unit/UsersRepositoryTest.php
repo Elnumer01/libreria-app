@@ -16,14 +16,10 @@ class UsersRepositoryTest extends TestCase {
 
         $repository = new UserRepository();
 
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
-
         $data = [
             'name' => "cristina",
             'email' => "cristina@gmail.com",
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password'=>bcrypt('12345678')
         ];
 
@@ -35,32 +31,31 @@ class UsersRepositoryTest extends TestCase {
         $this->assertEquals($user->password, $user->password);
     }
 
-    public function test_can_get_all_users(){
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
+    public function test_can_get_all_users()
+    {
+
         $user = User::create([
             'name' => "angela",
             'email' => "angela@gmail.com",
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password'=>bcrypt('12345678')
         ]);
         $user = User::create([
             'name' => "ioana",
             'email' => "ioana@gmail.com",
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password'=>bcrypt('12345678')
         ]);
         $user = User::create([
             'name' => "ricardo",
             'email' => "ricardo@gmail.com",
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password'=>bcrypt('12345678')
         ]);
         $user = User::create([
             'name' => "alexa",
             'email' => "alexa@gmail.com",
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password'=>bcrypt('12345678')
         ]);
 
@@ -71,14 +66,12 @@ class UsersRepositoryTest extends TestCase {
     }
 
     public function test_can_get_user_by_id(){
+
         $repository = new UserRepository();
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
         $user = User::create([
             'name' => "angela",
             'email' => "angela@gmail.com",
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password'=>bcrypt('12345678')
         ]);
         $Founduser = $repository->getById($user->id);
@@ -91,28 +84,22 @@ class UsersRepositoryTest extends TestCase {
     }
 
     public function test_can_get_user_clients(){
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
-        $rol2 = Rol::create([
-            'rol' => 2
-        ]);
         $user = User::create([
             'name' => "fernanada",
             'email' => "fernanda@gmail.com",
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password'=>bcrypt('12345678')
         ]);
         $user = User::create([
             'name' => "angela",
             'email' => "angela@gmail.com",
-            'rol_id' => $rol2->id,
+            'rol_id' => 2,
             'password'=>bcrypt('12345678')
         ]);
         $user = User::create([
             'name' => "ioana",
             'email' => "ioana@gmail.com",
-            'rol_id' =>  $rol2->id,
+            'rol_id' =>  2,
             'password'=>bcrypt('12345678')
         ]);
 
@@ -123,16 +110,11 @@ class UsersRepositoryTest extends TestCase {
 
     public function test_can_update_user(){
         $repository = new UserRepository();
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
-        $rol2 = Rol::create([
-            'rol' => 2
-        ]);
+
         $user = User::create([
             'name' => "fernanada",
             'email' => "fernanda@gmail.com",
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password'=>bcrypt('12345678')
         ]);
         $repository->update($user->id,['rol_id' => 2]);
@@ -143,13 +125,10 @@ class UsersRepositoryTest extends TestCase {
     }
 
     public function test_can_delete_user(){
-        $rol = Rol::create([
-            'rol' => 1
-        ]);
         $user = User::create([
             'name' => "fernanada",
             'email' => "fernanda@gmail.com",
-            'rol_id' => $rol->id,
+            'rol_id' => 1,
             'password'=>bcrypt('12345678')
         ]);
         $repository = new UserRepository();
