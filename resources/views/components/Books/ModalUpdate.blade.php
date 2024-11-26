@@ -10,7 +10,7 @@
             <form method="POST" action="{{url('books',[$row->id])}}">
                 @method('PUT')
                 @csrf
-                <input value="{{$row->title}}" type="text" class="form-control" name="title" placeholder="titulo" aria-label="Username"><br>
+                <input id="updatetitlebook" value="{{$row->title}}" type="text" class="form-control" name="title" placeholder="titulo" aria-label="Username"><br>
                 @error('title')
                     <small class="text-danger">{{$message}}</small>
                 @enderror
@@ -37,7 +37,7 @@
                         <small class="text-danger">{{$message}}</small>
                 @enderror
                 <div class="d-grid col-6 mx-auto">
-                    <button class="btn btn-secondary" type="submit"><i class="fa-solid fa-floppy-disk" type="submit"></i> Guardar</button>
+                    <button id="updatebook" class="btn btn-secondary" type="submit"><i class="fa-solid fa-floppy-disk" type="submit"></i> Guardar</button>
                 </div>
             </form>
         </div>

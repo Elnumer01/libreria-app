@@ -1,14 +1,14 @@
 <?php
 
-namespace Tests\Browser\Auth;
+namespace Tests\Browser\Books;
 
+use App\Models\Rol;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use App\Models\User;
-use App\Models\Rol;
 use App\Repositories\UserRepository;
-class LoginTest extends DuskTestCase
+class BookDeleteTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
@@ -26,13 +26,14 @@ class LoginTest extends DuskTestCase
             'password'=>bcrypt('12345678')
         ]);
 
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/login')
-                    ->type('email', 'elnumero1@gmail.com')
-                    ->type('password', '12345678')
-                    ->click('button[type="submit"]')
-                    ->assertPathIs('/books')
-                    ->assertSee('Libros');
+
+        $this->browse(function (Browser $browser)  use ($user){
+            $browser->loginAs($user)
+                    ->visit('/books')
+                    ->assertSee('Libros')
+                    ->click('#modaldeletebook')
+                    ->pause(2000)
+                    ;
         });
 
         $repository = new UserRepository();

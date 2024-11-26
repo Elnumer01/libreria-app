@@ -13,7 +13,7 @@
                     <h5>¿Estas seguro de eliminar el siguiente registro?</h5>
                 </div><br>
                 <div class="d-grid col-6 mx-auto">
-                    <button class="btn btn-danger"><i class="fa-solid fa-floppy-disk" type="submit"></i>Eliminar</button>
+                    <button id="deletebook" class="btn btn-danger"><i class="fa-solid fa-floppy-disk" type="submit"></i>Eliminar</button>
                 </div>
             </form>
         </div>

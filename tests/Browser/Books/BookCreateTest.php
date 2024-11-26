@@ -1,23 +1,21 @@
 <?php
 
-namespace Tests\Browser\Authors;
+namespace Tests\Browser\Books;
 
+use App\Models\Rol;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use App\Models\User;
-use App\Models\Rol;
 use App\Repositories\UserRepository;
 
-class AuthorDeleteTest extends DuskTestCase
+class BookCreateTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
      */
-
     public function testExample(): void
     {
-
         $rol = Rol::create([
             'rol' => 1
         ]);
@@ -29,15 +27,20 @@ class AuthorDeleteTest extends DuskTestCase
             'password'=>bcrypt('12345678')
         ]);
 
-        $this->browse(function (Browser $browser) use ($user){
+        $this->browse(function (Browser $browser)  use ($user){
             $browser->loginAs($user)
-                    ->visit('/authors')
-                    ->assertSee('Autores')
-                    ->click('#modaldeleteauthor')
+                    ->visit('/books')
+                    ->assertSee('Libros')
+                    ->click('#modalcreatebook')
                     ->pause(2000)
-                    ->click('#deleteauthor')
+                    ->type('#createtitlebook', 'juegos del hambre')
+                    ->type('#createdescriptionbook', 'Cada ciudadano debe ver pelear a muerte a los jóvenes')
+                    ->type('#createisbnbook', '678678564')
+                    ->type('#creategenderbook', 'accion, suspenso')
+                    ->select('#createauthor_id_book',1)
+                    ->click('#createbook')
                     ->pause(2000)
-                ;
+                    ;
         });
 
         $repository = new UserRepository();
