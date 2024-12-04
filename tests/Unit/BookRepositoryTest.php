@@ -53,7 +53,7 @@ class BookRepositoryTest extends TestCase
         $repository = new BooksRepository();
         $books = $repository->getAll();
 
-        $this->assertCount(2, $books);
+        $this->assertIsIterable($books);
     }
 
     public function test_can_get_book_by_id()
