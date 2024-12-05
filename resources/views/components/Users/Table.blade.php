@@ -4,7 +4,7 @@
             <th>Matricula</th>
             <th>Nombre de usuario</th>
             <th>Correo</th>
-            <th>rol</th>
+            <th>Rol</th>
             <th></th>
         </tr>
     </thead>
