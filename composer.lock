@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "620f5d52e6523bb18168f0b414e4b1d1",
+    "content-hash": "8f480cb30ed4c05da9db668ff31e2021",
     "packages": [
         {
             "name": "brick/math",
@@ -6134,16 +6134,16 @@
         },
         {
             "name": "laravel/dusk",
-            "version": "v8.2.11",
+            "version": "v8.2.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/dusk.git",
-                "reference": "c667db6d8795f0ccc8f63d54a7780ce8a0cc3d3c"
+                "reference": "a399aa31c1c9cef793ad747403017e56df77396c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/dusk/zipball/c667db6d8795f0ccc8f63d54a7780ce8a0cc3d3c",
-                "reference": "c667db6d8795f0ccc8f63d54a7780ce8a0cc3d3c",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/a399aa31c1c9cef793ad747403017e56df77396c",
+                "reference": "a399aa31c1c9cef793ad747403017e56df77396c",
                 "shasum": ""
             },
             "require": {
@@ -6153,7 +6153,7 @@
                 "illuminate/console": "^10.0|^11.0",
                 "illuminate/support": "^10.0|^11.0",
                 "php": "^8.1",
-                "php-webdriver/webdriver": "^1.9.0",
+                "php-webdriver/webdriver": "^1.15.2",
                 "symfony/console": "^6.2|^7.0",
                 "symfony/finder": "^6.2|^7.0",
                 "symfony/process": "^6.2|^7.0",
@@ -6200,9 +6200,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/dusk/issues",
-                "source": "https://github.com/laravel/dusk/tree/v8.2.11"
+                "source": "https://github.com/laravel/dusk/tree/v8.2.12"
             },
-            "time": "2024-11-07T21:51:32+00:00"
+            "time": "2024-11-21T17:37:39+00:00"
         },
         {
             "name": "laravel/pail",
@@ -8305,12 +8305,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

@@ -47,12 +47,6 @@ class UsersRepositoryTest extends TestCase {
             'password'=>bcrypt('12345678')
         ]);
         $user = User::create([
-            'name' => "ricardo",
-            'email' => "ricardo@gmail.com",
-            'rol_id' => 1,
-            'password'=>bcrypt('12345678')
-        ]);
-        $user = User::create([
             'name' => "alexa",
             'email' => "alexa@gmail.com",
             'rol_id' => 1,
