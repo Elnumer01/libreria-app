@@ -21,14 +21,12 @@
             steps {
                 echo &apos;Preparando entorno...&apos;
                 script {
-                    docker.image(&apos;libreria-app-php-1&apos;).inside {
-                        // Instalar dependencias del proyecto
-                        sh &apos;composer install --no-interaction --prefer-dist --optimize-autoloader&apos;
-                        // Generar clave de la aplicación si no existe
-                        sh &apos;php artisan key:generate&apos;
-                        // Migrar la base de datos
-                        sh &apos;php artisan migrate:fresh --seed&apos;
-                    }
+                    // Instalar dependencias del proyecto
+                    sh &apos;docker exec libreria-app-php-1 composer install --no-interaction --prefer-dist --optimize-autoloader&apos;
+                    // Generar clave de la aplicación si no existe
+                    sh &apos;docker exec libreria-app-php-1 php artisan key:generate&apos;
+                    // Migrar la base de datos
+                    sh &apos;docker exec libreria-app-php-1 php artisan migrate:fresh --seed&apos;
                 }
             }
         }
@@ -37,9 +35,7 @@
             steps {
                 echo &apos;Corriendo pruebas unitarias...&apos;
                 script {
-                    docker.image(&apos;libreria-app-php-1&apos;).inside {
-                        sh &apos;php artisan test&apos;
-                    }
+                    sh &apos;docker exec libreria-app-php-1 php artisan test&apos;
                 }
             }
         }
@@ -48,9 +44,7 @@
             steps {
                 echo &apos;Corriendo pruebas Dusk...&apos;
                 script {
-                    docker.image(&apos;libreria-app-php-1&apos;).inside {
-                        sh &apos;php artisan dusk&apos;
-                    }
+                    sh &apos;docker exec libreria-app-php-1 php artisan dusk&apos;
                 }
             }
         }
@@ -60,10 +54,8 @@
         always {
             echo &apos;Limpiando entorno...&apos;
             script {
-                docker.image(&apos;libreria-app-php-1&apos;).inside {
-                    sh &apos;php artisan config:clear&apos;
-                    sh &apos;php artisan cache:clear&apos;
-                }
+                sh &apos;docker exec libreria-app-php-1 php artisan config:clear&apos;
+                sh &apos;docker exec libreria-app-php-1 php artisan cache:clear&apos;
             }
         }
         success {
